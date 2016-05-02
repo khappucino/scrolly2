@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4A2D0AE1CD6DAD400993248 /* PageMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2D0AD1CD6DAD400993248 /* PageMaster.m */; };
 		F4E059231CD65F6F00539A6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E059221CD65F6F00539A6A /* main.m */; };
 		F4E059261CD65F6F00539A6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E059251CD65F6F00539A6A /* AppDelegate.m */; };
 		F4E059291CD65F6F00539A6A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E059281CD65F6F00539A6A /* ViewController.m */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F4A2D0AC1CD6DAD400993248 /* PageMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageMaster.h; sourceTree = "<group>"; };
+		F4A2D0AD1CD6DAD400993248 /* PageMaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageMaster.m; sourceTree = "<group>"; };
 		F4E0591E1CD65F6F00539A6A /* scrolly2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scrolly2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E059221CD65F6F00539A6A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F4E059241CD65F6F00539A6A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				F4E0592F1CD65F6F00539A6A /* LaunchScreen.storyboard */,
 				F4E059321CD65F6F00539A6A /* Info.plist */,
 				F4E059211CD65F6F00539A6A /* Supporting Files */,
+				F4A2D0AC1CD6DAD400993248 /* PageMaster.h */,
+				F4A2D0AD1CD6DAD400993248 /* PageMaster.m */,
 			);
 			path = scrolly2;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A2D0AE1CD6DAD400993248 /* PageMaster.m in Sources */,
 				F4E059291CD65F6F00539A6A /* ViewController.m in Sources */,
 				F4E059261CD65F6F00539A6A /* AppDelegate.m in Sources */,
 				F4E059231CD65F6F00539A6A /* main.m in Sources */,
@@ -498,6 +504,7 @@
 				F4E0594D1CD65F6F00539A6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4E0594E1CD65F6F00539A6A /* Build configuration list for PBXNativeTarget "scrolly2Tests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +513,7 @@
 				F4E059501CD65F6F00539A6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4E059511CD65F6F00539A6A /* Build configuration list for PBXNativeTarget "scrolly2UITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +522,7 @@
 				F4E059531CD65F6F00539A6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,17 +7,24 @@
 //
 
 #import "ViewController.h"
+#import "PageMaster.h"
 
 @interface ViewController () <UIScrollViewDelegate>
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (assign) NSInteger numViews;
 @property (assign) NSInteger size;
+@property (nonatomic, strong) PageMaster *pageMaster;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.pageMaster = [[PageMaster alloc] init];
+    self.pageMaster.orientation = Horizontal;
+    self.pageMaster.delegate = self;
+    
     UIView *view;
     self.numViews = 20;
     self.size = 100;
@@ -37,24 +44,20 @@
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    
-    CGFloat slack = (NSInteger)scrollView.contentOffset.x % self.size; // remainder
-    CGFloat halfSize = (CGFloat)self.size/2.0;
-    NSInteger index = scrollView.contentOffset.x / self.size;
-    if (velocity.x > 0.1) {
-        *targetContentOffset = CGPointMake((index + 1) * self.size, 0);
-    } else if (velocity.x < -0.1) {
-        *targetContentOffset = CGPointMake((index)* self.size, 0);
-    } else {
-        // if we are dragging snap based on what is most on the screen
-        if (slack >= halfSize) {
-            index = scrollView.contentOffset.x / self.size + 1;
-        }
-        *targetContentOffset = CGPointMake(index * self.size, 0);
-    }
-    
-   
+
+    [self.pageMaster scrollViewWillEndDragging:scrollView withVelocity:velocity targetContentOffset:targetContentOffset];
+
 }
 
+
+
+#pragma mark - PageMasterDelegate
+- (CGSize)sizeForItemAtIndex:(NSInteger)index {
+    return CGSizeMake(self.size, 0);
+}
+
+- (NSInteger)numberOfItems {
+    return 20;
+}
 
 @end
