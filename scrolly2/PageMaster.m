@@ -17,7 +17,7 @@ typedef struct {
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
 
-    PageMasterStruct valStruct = [self internalCalculateWithScrollViewOffset:scrollView.contentOffset];
+    PageMasterStruct valStruct = [self internalCalculateWithScrollViewOffset:scrollView.contentOffset edgeInsets:scrollView.contentInset];
     
     if (velocity.x > 0.1) {
         CGFloat nextSingularDistanceValue= [self valueForSize:[self.delegate sizeForItemAtIndex:valStruct.baseIndex]];
@@ -44,13 +44,13 @@ typedef struct {
     
 }
 
-- (PageMasterStruct)internalCalculateWithScrollViewOffset:(CGPoint)offset {
+- (PageMasterStruct)internalCalculateWithScrollViewOffset:(CGPoint)offset edgeInsets:(UIEdgeInsets)edgeInsets {
     PageMasterStruct valStruct = (PageMasterStruct) { .baseIndex = 0, .baseDistance = 0  };
     
     if (self.delegate) {
         NSInteger numItems = [self.delegate numberOfItems];
         CGFloat scrollViewOffsetVal = [self valueForPoint:offset];
-        CGFloat currentValue = 0;
+        CGFloat currentValue = -1 * [self valueForEdgeInsets:edgeInsets];
         NSInteger index = 0;
         for (int i = 0; i < numItems; i++) {
             CGFloat thermometerValue = currentValue + [self valueForSize:[self.delegate sizeForItemAtIndex:i]];
@@ -70,6 +70,20 @@ typedef struct {
     return valStruct;
 }
 
+- (CGFloat)valueForEdgeInsets:(UIEdgeInsets)edgeInsets {
+    CGFloat val = 0;
+    switch (self.orientation) {
+        case Horizontal :
+            val = edgeInsets.left;
+            break;
+        case Vertical :
+            val = edgeInsets.top;
+            break;
+        default:
+            break;
+    };
+    return val;
+}
 
 - (CGFloat)valueForPoint:(CGPoint)point {
     CGFloat val = 0;
@@ -86,7 +100,6 @@ typedef struct {
     return val;
 }
 
-                
 - (CGFloat)valueForSize:(CGSize)size {
     CGFloat val = 0;
     switch (self.orientation) {
