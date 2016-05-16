@@ -22,7 +22,10 @@ typedef NS_ENUM(NSInteger, PageMasterOrientation)
 @end
 
 @interface PageMaster : NSObject
+
 @property (nonatomic, weak) id<PageMasterDelegate> delegate;
 @property (nonatomic, assign) enum PageMasterOrientation orientation;
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
+
+// returns the target index
+- (NSInteger)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
 @end
