@@ -15,14 +15,16 @@ typedef struct {
 
 @implementation PageMaster
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+- (NSInteger)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
 
     PageMasterStruct valStruct = [self internalCalculateWithScrollViewOffset:scrollView.contentOffset edgeInsets:scrollView.contentInset];
+    NSInteger targetIndex = valStruct.baseIndex;
     
     if (velocity.x > 0.1) {
         CGFloat nextSingularDistanceValue= [self valueForSize:[self.delegate sizeForItemAtIndex:valStruct.baseIndex]];
         CGFloat comboValue = valStruct.baseDistance + nextSingularDistanceValue;
         *targetContentOffset = [self pointForValue:comboValue];
+        targetIndex++;
     }
     else if (velocity.x < -0.1) {
         CGFloat singleValue = valStruct.baseDistance;
@@ -35,6 +37,7 @@ typedef struct {
         if (currentDistance >= comboValueHalfDistance) {
             CGFloat comboValue = valStruct.baseDistance + nextSingularDistanceValue;
             *targetContentOffset = [self pointForValue:comboValue];
+            targetIndex++;
         }
         else {
             CGFloat singleValue = valStruct.baseDistance;
@@ -42,6 +45,7 @@ typedef struct {
         }
     }
     
+    return MIN([self.delegate numberOfItems] - 1, targetIndex);
 }
 
 - (PageMasterStruct)internalCalculateWithScrollViewOffset:(CGPoint)offset edgeInsets:(UIEdgeInsets)edgeInsets {
