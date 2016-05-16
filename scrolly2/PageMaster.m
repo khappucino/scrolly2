@@ -52,7 +52,7 @@ typedef struct {
         CGFloat scrollViewOffsetVal = [self valueForPoint:offset];
         CGFloat currentValue = -1 * [self valueForEdgeInsets:edgeInsets];
         NSInteger index = 0;
-        for (int i = 0; i < numItems; i++) {
+        for (int i = 0; i < numItems - 1; i++) {
             CGFloat thermometerValue = currentValue + [self valueForSize:[self.delegate sizeForItemAtIndex:i]];
             if (thermometerValue > scrollViewOffsetVal) {
                 break;
